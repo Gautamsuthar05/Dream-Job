@@ -2,6 +2,7 @@
 import Home from "./pages/Home";
 import Navbar from "./components/Navbar";
 import Login from "./pages/Login";
+import Signup from "./pages/SignUp";
 import Applications from "./components/Applications";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { AppContextProvider } from "./context/AppContext";
@@ -25,6 +26,10 @@ function App() {
           <Login />
         </>
       ),
+    },
+    {
+      path: "/signup",
+      element: <Signup />,
     },
     {
       path: "/Applications",
