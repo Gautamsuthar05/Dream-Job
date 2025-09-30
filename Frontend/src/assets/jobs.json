@@ -1,0 +1,146 @@
+[
+  {
+    "id": 1,
+    "title": "Software Engineer",
+    "company": "TechCorp",
+    "location": "New York, NY",
+    "type": "Full-time",
+    "category": "Software Development",
+    "description": "Develop and maintain web applications. Proficient in JavaScript and React. Experience with backend technologies is a plus. Collaborate with cross-functional teams to define, design, and ship new features.",
+    "requirements": [
+      "Bachelor's degree in Computer Science",
+      "3+ years of experience with JavaScript",
+      "Experience with React and Node.js"
+    ],
+    "postedDate": "2023-10-01",
+    "salary": "$80,000 - $120,000"
+  },
+  {
+    "id": 2,
+    "title": "Marketing Manager",
+    "company": "MarketMinds",
+    "location": "San Francisco, CA",
+    "type": "Full-time",
+    "category": "Marketing",
+    "description": "Lead marketing campaigns and strategies. Collaborate with cross-functional teams to define and execute marketing initiatives. Analyze market trends and adjust strategies accordingly.",
+    "requirements": [
+      "Bachelor's degree in Marketing or related field",
+      "5+ years of experience in marketing",
+      "Strong communication and leadership skills"
+    ],
+    "postedDate": "2023-09-15",
+    "salary": "$70,000 - $100,000"
+  },
+  {
+    "id": 3,
+    "title": "Data Analyst",
+    "company": "DataSolutions",
+    "location": "Remote",
+    "type": "Contract",
+    "category": "Data Science",
+    "description": "Analyze data to provide business insights. Proficient in SQL and Python. Experience with data visualization tools is a plus. Work with stakeholders to understand data needs and deliver actionable insights.",
+    "requirements": [
+      "Bachelor's degree in Statistics or related field",
+      "Experience with SQL and Python",
+      "Strong analytical skills"
+    ],
+    "postedDate": "2023-10-05",
+    "salary": "$40/hr - $60/hr"
+  },
+  {
+    "id": 4,
+    "title": "UI/UX Designer",
+    "company": "DesignPro",
+    "location": "Los Angeles, CA",
+    "type": "Full-time",
+    "category": "Design",
+    "description": "Create user-friendly interfaces and experiences. Collaborate with product and development teams to design intuitive user flows. Proficiency in design tools like Figma and Adobe XD. Stay updated with the latest design trends and best practices.",
+    "requirements": [
+      "Bachelor's degree in Design or related field",
+      "3+ years of experience in UI/UX design",
+      "Proficiency in design tools like Figma and Adobe XD"
+    ],
+    "postedDate": "2023-09-20",
+    "salary": "$80,000 - $110,000"
+  },
+  {
+    "id": 5,
+    "title": "Product Manager",
+    "company": "Productify",
+    "location": "Austin, TX",
+    "type": "Full-time",
+    "category": "Product Management",
+    "description": "Lead product development and strategy. Define product vision and roadmap. Work closely with engineering, design, and marketing teams to deliver high-quality products. Analyze market trends and customer feedback to inform product decisions. ",
+    "requirements": [
+      "Bachelor's degree in Business or related field",
+      "5+ years of experience in product management",
+      "Strong leadership and communication skills"
+    ],
+    "postedDate": "2023-09-25",
+    "salary": "$90,000 - $130,000"
+  },
+  {
+    "id": 6,
+    "title": "DevOps Engineer",
+    "company": "CloudTech",
+    "location": "Seattle, WA",
+    "type": "Full-time",
+    "category": "DevOps",
+    "description": "Manage and optimize cloud infrastructure. Implement CI/CD pipelines and automate deployment processes. Monitor system performance and troubleshoot issues. Collaborate with development teams to ensure smooth and efficient operations.",
+    "requirements": [
+      "Bachelor's degree in Computer Science or related field",
+      "3+ years of experience in DevOps",
+      "Proficiency in AWS, Docker, and Kubernetes"
+    ],
+    "postedDate": "2023-09-30",
+    "salary": "$100,000 - $140,000"
+  },
+  {
+    "id": 7,
+    "title": "Data Scientist",
+    "company": "DataInsights",
+    "location": "Remote",
+    "type": "Contract",
+    "category": "Data Science",
+    "description": "Extract insights from complex data sets. Build and deploy machine learning models. Proficient in Python and machine learning libraries. Work with stakeholders to understand business needs and deliver data-driven solutions.",
+    "requirements": [
+      "Master's degree in Data Science or related field",
+      "5+ years of experience in data analysis",
+      "Proficiency in Python and machine learning libraries"
+    ],
+    "postedDate": "2023-10-01",
+    "salary": "$60/hr - $80/hr"
+  },
+  {
+    "id": 8,
+    "title": "Frontend Developer",
+    "company": "WebSolutions",
+    "location": "Austin, TX",
+    "type": "Full-time",
+    "category": "Software Development",
+    "description": "Build and maintain user-facing features.  Proficient in HTML, CSS, and JavaScript. Experience with React is a plus. Collaborate with design and backend teams to create seamless user experiences.",
+    "requirements": [
+      "Bachelor's degree in Computer Science or related field",
+      "3+ years of experience with React",
+      "Strong understanding of HTML, CSS, and JavaScript"
+    ],
+    "postedDate": "2023-10-05",
+    "salary": "$80,000 - $120,000"
+  },
+  {
+    "id": 9,
+    "title": "Backend Developer",
+    "company": "WebSolutions",
+    "location": "Austin, TX",
+    "type": "Full-time",
+    "category": "Software Development",
+    "description": "Build and maintain server-side applications. Proficient in Node.js and database management. Experience with RESTful APIs is a plus. Collaborate with frontend teams to ensure seamless integration and performance.",
+    "requirements": [
+      "Bachelor's degree in Computer Science or related field",
+      "3+ years of experience with Node.js",
+      "Strong understanding of RESTful APIs and database design"
+    ],
+    "postedDate": "2023-10-05",
+    "salary": "$80,000 - $120,000"
+  }
+]
