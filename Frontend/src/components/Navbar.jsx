@@ -1,18 +1,32 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { Link } from "react-router-dom";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/solid"; // ✅ Add heroicons for hamburger
+import { useContext } from "react";
+import AppContext from "../context/AppContext";
 
 function Navbar() {
   const [DropdownOpen, setDropdownOpen] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false); // ✅ New state for mobile nav
   const [loggedin, setLoggedin] = useState(false);
-  const [searchTerm, setSearchTerm] = useState("");
-  const [selectTerm, setselectTerm] = useState("default");
+  const { setIsSearched, setSearchFilter } = useContext(AppContext);
+
+  const titleRef = useRef(null);
+  const typeRef = useRef(null);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("Search Term:", searchTerm);
-    console.log("Select Term:", selectTerm);
+  };
+
+  const onSearch = () => {
+    setSearchFilter({
+      title: titleRef.current.value.toUpperCase(),
+      type: typeRef.current.value.toUpperCase(),
+    });
+    setIsSearched(true);
+    console.log({
+      title: titleRef.current.value,
+      type: typeRef.current.value,
+    });
   };
 
   const toggleDropdown = () => setDropdownOpen((prev) => !prev);
@@ -24,7 +38,7 @@ function Navbar() {
       <div className="flex items-center justify-between w-full lg:w-auto">
         <div className="flex items-center gap-3">
           <img
-            src="/public/images/icons8-permanent-job-48.png"
+            src="/images/icons8-permanent-job-48.png"
             alt="Job-Portal-Logo"
             className="w-10"
           />
@@ -53,30 +67,29 @@ function Navbar() {
         <div className="flex px-4 py-2 border rounded-full flex-col lg:flex-row w-full gap-2 lg:gap-0">
           <select
             className="rounded px-3 py-1 focus:outline-none hidden lg:block"
-            value={selectTerm}
-            onChange={(e) => setselectTerm(e.target.value)}
+            ref={typeRef}
           >
-            <option value="default" disabled={false} className="text-black">
+            <option value="" disabled={false} className="text-black">
               Select job type
             </option>
-            <option value="internship" className="text-black">
+            <option value="Internship" className="text-black">
               Internship
             </option>
-            <option value="fulltime" className="text-black">
+            <option value="Full-Time" className="text-black">
               Full-Time
             </option>
-            <option value="parttime" className="text-black">
+            <option value="Part-Time" className="text-black">
               Part-Time
             </option>
           </select>
           <input
             type="text"
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
+            ref={titleRef}
             placeholder="Search Here"
             className="px-4 py-1 rounded w-full lg:w-80 outline-none"
           />
           <button
+            onClick={onSearch}
             type="submit"
             className="border rounded-full bg-blue-900 hover:bg-blue-800 py-1 px-3 "
           >

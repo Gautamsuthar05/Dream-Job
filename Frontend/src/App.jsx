@@ -1,14 +1,12 @@
-// import { useState } from 'react'
 import Home from "./pages/Home";
 import Navbar from "./components/Navbar";
 import Login from "./pages/Login";
 import Signup from "./pages/SignUp";
-import Applications from "./components/Applications";
+import Applications from "./pages/Applications";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { AppContextProvider } from "./context/AppContext";
 
 function App() {
-  // const [count, setCount] = useState(0)
   const router = createBrowserRouter([
     {
       path: "/",
@@ -51,12 +49,12 @@ function App() {
 
   return (
     <>
-      <RouterProvider router={router}>
-        <AppContextProvider>
+      <AppContextProvider>
+        <RouterProvider router={router}>
           <Navbar />
           <Home />
-        </AppContextProvider>
-      </RouterProvider>
+        </RouterProvider>
+      </AppContextProvider>
     </>
   );
 }

@@ -4,6 +4,7 @@
 .env.local
 .env.*.local    
 node_modules
+.git
 dist
 build
 .DS_Store   
