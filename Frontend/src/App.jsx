@@ -12,7 +12,6 @@ function App() {
       path: "/",
       element: (
         <>
-          <Navbar />
           <Home />
         </>
       ),
@@ -51,7 +50,6 @@ function App() {
     <>
       <AppContextProvider>
         <RouterProvider router={router}>
-          <Navbar />
           <Home />
         </RouterProvider>
       </AppContextProvider>

@@ -1,12 +1,46 @@
 import { Link } from "react-router-dom";
+import { useState } from "react";
+import { toast } from "react-toastify";
+import axios from "axios";
+import { useContext } from "react";
+import AppContext from "../context/AppContext";
+import { useNavigate } from "react-router-dom";
+
 function LoginPage() {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const { backendURI, getUserData, setLoggedin } =
+    useContext(AppContext);
+  const navigate = useNavigate();
+  axios.defaults.withCredentials = true;
+  const handleSubmit = async (e) => {
+    try {
+      e.preventDefault();
+      const { data } = await axios.post(backendURI + "/api/auth/login", {
+        email,
+        password,
+      });
+      console.log("login");
+      data.success
+        ? (toast.success(data.message),
+          getUserData(),
+          setLoggedin(true),
+          navigate("/"),
+          console.log("Navigated to home"))
+        : toast.error(data.message);
+      console.log(data);
+    } catch (error) {
+      toast.error(error.message);
+    }
+  };
+
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-100">
       <div className="bg-white p-8 rounded-lg shadow-md w-full max-w-md">
         <h2 className="text-2xl font-bold mb-6 text-center text-gray-800">
           Login to Dream Job
         </h2>
-        <form className="space-y-4">
+        <form className="space-y-4" onSubmit={handleSubmit}>
           <div>
             <label
               htmlFor="email"
@@ -17,6 +51,8 @@ function LoginPage() {
             <input
               type="email"
               id="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
               className="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
               placeholder="you@example.com"
               required
@@ -32,6 +68,8 @@ function LoginPage() {
             <input
               type="password"
               id="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
               className="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
               placeholder="password"
               required

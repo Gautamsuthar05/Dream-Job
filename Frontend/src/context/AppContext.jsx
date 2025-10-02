@@ -8,6 +8,7 @@ export const AppContextProvider = ({ children }) => {
   const [jobs, setJobs] = useState([]);
   const [userData, setUserData] = useState();
   const [isSearched, setIsSearched] = useState(false);
+  const [loggedin, setLoggedin] = useState(false);
   const backendURI = import.meta.env.VITE_BACKEND_URI;
   axios.defaults.withCredentials = true;
 
@@ -39,6 +40,10 @@ export const AppContextProvider = ({ children }) => {
     setJobs,
     getUserData,
     backendURI,
+    userData,
+    setUserData,
+    loggedin,
+    setLoggedin,
   };
 
   return <AppContext.Provider value={value}>{children}</AppContext.Provider>;

@@ -3,13 +3,24 @@ import { Link } from "react-router-dom";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/solid"; // ✅ Add heroicons for hamburger
 import { useContext } from "react";
 import AppContext from "../context/AppContext";
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+import axios from "axios";
 
 function Navbar() {
   const [DropdownOpen, setDropdownOpen] = useState(false);
+  const [logoutButton, setLogoutButton] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false); // ✅ New state for mobile nav
-  const [loggedin, setLoggedin] = useState(false);
-  const { setIsSearched, setSearchFilter } = useContext(AppContext);
-
+  const {
+    setIsSearched,
+    setSearchFilter,
+    userData,
+    loggedin,
+    setLoggedin,
+    backendURI,
+    setUserData,
+  } = useContext(AppContext);
+  const navigate = useNavigate();
   const titleRef = useRef(null);
   const typeRef = useRef(null);
 
@@ -29,7 +40,24 @@ function Navbar() {
     });
   };
 
+  const logout = async () => {
+    try {
+      const { data } = await axios.post(backendURI + "/api/auth/logout");
+      if (data.success) {
+        toast.success(data.message);
+        setLoggedin(false);
+        setUserData(null);
+        navigate("/login");
+      } else {
+        toast.error(data.message);
+      }
+    } catch (error) {
+      toast.error(error.message);
+    }
+  };
+
   const toggleDropdown = () => setDropdownOpen((prev) => !prev);
+  const toggleLogout = () => setLogoutButton((prev) => !prev);
   const toggleMobileMenu = () => setMobileMenuOpen((prev) => !prev); // ✅ Toggle mobile nav
 
   return (
@@ -124,12 +152,30 @@ function Navbar() {
                 </ul>
               )}
             </li>
-
             <li>
               <Link to="/applications" className="hover:text-yellow-400">
                 Applied Jobs
               </Link>
             </li>
+            <div className="relative">
+              <button
+                onClick={toggleLogout}
+                className="px-3 py-1 rounded-lg bg-gray-700"
+              >
+                {userData?.name?.charAt(0)?.toUpperCase() || "U"}
+              </button>
+
+              {logoutButton && (
+                <div className="absolute right-0 mt-2 bg-white text-black shadow-lg rounded-lg w-40 z-20">
+                  <button
+                    onClick={logout}
+                    className="w-full text-left px-4 py-2 hover:bg-gray-100"
+                  >
+                    Logout
+                  </button>
+                </div>
+              )}
+            </div>
           </ul>
         )}
 
@@ -137,7 +183,7 @@ function Navbar() {
           <div className="flex flex-col lg:flex-row gap-2">
             <Link to="/login">
               <button className="border py-1 px-3 rounded-lg bg-blue-900 hover:bg-blue-800">
-                Recruiter Login
+                Login
               </button>
             </Link>
             {/* <button className="border py-1 px-3 rounded-lg bg-blue-900 hover:bg-blue-800">
