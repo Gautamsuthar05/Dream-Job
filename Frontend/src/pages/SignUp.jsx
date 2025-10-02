@@ -1,12 +1,49 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useState } from "react";
+import axios from "axios";
+import { toast } from "react-toastify";
+import { useContext } from "react";
+import AppContext from "../context/AppContext";
+
 function SignupPage() {
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const navigate = useNavigate();
+
+  axios.defaults.withCredentials = true;
+  const { backendURI } = useContext(AppContext);
+
+  const onSubmitHandler = async (e) => {
+    e.preventDefault();
+    console.log("Submitting...");
+    try {
+      const { data } = await axios.post(backendURI + "/api/auth/register", {
+        name,
+        email,
+        password,
+      });
+
+      if (data.success) {
+        toast.success(data.message);
+        navigate("/login");
+      } else {
+        toast.error(data.message);
+        if (data.message.includes("already")) {
+          setTimeout(() => navigate("/login"), 1000);
+        }
+      }
+    } catch (error) {
+      toast.error(error.message);
+    }
+  };
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-100">
       <div className="bg-white p-8 rounded-lg shadow-md w-full max-w-md">
         <h2 className="text-2xl font-bold mb-6 text-center text-gray-800">
           Register to Dream Job
         </h2>
-        <form className="space-y-4">
+        <form className="space-y-4" onSubmit={onSubmitHandler}>
           <div>
             <label
               htmlFor="name"
@@ -17,6 +54,8 @@ function SignupPage() {
             <input
               type="text"
               id="name"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
               className="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
               placeholder="Your Name"
               required
@@ -32,6 +71,8 @@ function SignupPage() {
             <input
               type="email"
               id="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
               className="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
               placeholder="you@example.com"
               required
@@ -47,6 +88,8 @@ function SignupPage() {
             <input
               type="password"
               id="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
               className="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
               placeholder="password"
               required

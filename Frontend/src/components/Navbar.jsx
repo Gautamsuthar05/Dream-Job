@@ -140,9 +140,9 @@ function Navbar() {
                 Recruiter Login
               </button>
             </Link>
-            <button className="border py-1 px-3 rounded-lg bg-blue-900 hover:bg-blue-800">
+            {/* <button className="border py-1 px-3 rounded-lg bg-blue-900 hover:bg-blue-800">
               Login
-            </button>
+            </button> */}
           </div>
         )}
       </div>

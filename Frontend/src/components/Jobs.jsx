@@ -1,59 +1,61 @@
 import AppContext from "../context/AppContext";
 import { useContext } from "react";
-import jobs from "../assets/jobs.json";
 function Jobs() {
-  const { isSearched, searchFilter, setSearchFilter } = useContext(AppContext);
+  const { isSearched, searchFilter, setSearchFilter, jobs } =
+    useContext(AppContext);
 
   return (
     <>
       <div className="flex w-full pt-[160px] lg:pt-[72px]">
         {/* Left Sidebar */}
         <div className="w-full hidden md:block max-w-70 p-6 overflow-y-auto bg-gray-100 rounded-lg shadow-md flex flex-col gap-4">
-          <h3>Current Search</h3>
           {isSearched &&
             (searchFilter.title !== "" || searchFilter.type !== "") && (
-              <div className="p-3 flex gap-0.5 bg-white border border-gray-300 rounded-md shadow-sm">
-                {searchFilter.title && (
-                  <div className="flex items-center gap-2 bg-blue-300 w-fit p-2 rounded">
-                    <h4 className="text-sm"> {searchFilter.title}</h4>
-                    <svg
-                      onClick={() =>
-                        setSearchFilter({ ...searchFilter, title: "" })
-                      }
-                      xmlns="http://www.w3.org/2000/svg"
-                      x="0px"
-                      y="0px"
-                      width="15"
-                      height="15"
-                      viewBox="0 0 24 24"
-                    >
-                      <circle cx="12" cy="12" r="10" opacity=".35"></circle>
-                      <path d="M14.812,16.215L7.785,9.188c-0.384-0.384-0.384-1.008,0-1.392l0.011-0.011c0.384-0.384,1.008-0.384,1.392,0l7.027,7.027	c0.384,0.384,0.384,1.008,0,1.392l-0.011,0.011C15.82,16.599,15.196,16.599,14.812,16.215z"></path>
-                      <path d="M7.785,14.812l7.027-7.027c0.384-0.384,1.008-0.384,1.392,0l0.011,0.011c0.384,0.384,0.384,1.008,0,1.392l-7.027,7.027	c-0.384,0.384-1.008,0.384-1.392,0l-0.011-0.011C7.401,15.82,7.401,15.196,7.785,14.812z"></path>
-                    </svg>
-                  </div>
-                )}
-                {searchFilter.type && (
-                  <div className="flex items-center gap-2 bg-pink-300 p-2 rounded w-fit">
-                    <p className="text-sm">{searchFilter.type}</p>
-                    <svg
-                      onClick={() =>
-                        setSearchFilter({ ...searchFilter, type: "" })
-                      }
-                      xmlns="http://www.w3.org/2000/svg"
-                      x="0px"
-                      y="0px"
-                      width="15"
-                      height="15"
-                      viewBox="0 0 24 24"
-                    >
-                      <circle cx="12" cy="12" r="10" opacity=".35"></circle>
-                      <path d="M14.812,16.215L7.785,9.188c-0.384-0.384-0.384-1.008,0-1.392l0.011-0.011c0.384-0.384,1.008-0.384,1.392,0l7.027,7.027	c0.384,0.384,0.384,1.008,0,1.392l-0.011,0.011C15.82,16.599,15.196,16.599,14.812,16.215z"></path>
-                      <path d="M7.785,14.812l7.027-7.027c0.384-0.384,1.008-0.384,1.392,0l0.011,0.011c0.384,0.384,0.384,1.008,0,1.392l-7.027,7.027	c-0.384,0.384-1.008,0.384-1.392,0l-0.011-0.011C7.401,15.82,7.401,15.196,7.785,14.812z"></path>
-                    </svg>
-                  </div>
-                )}
-              </div>
+              <>
+                <h3>Current Search</h3>
+                <div className="p-3 flex w-fit gap-0.5 bg-white border border-gray-300 rounded-md shadow-sm">
+                  {searchFilter.title && (
+                    <div className="flex items-center gap-2 bg-blue-300 w-fit p-2 rounded">
+                      <h4 className="text-xs"> {searchFilter.title}</h4>
+                      <svg
+                        onClick={() =>
+                          setSearchFilter({ ...searchFilter, title: "" })
+                        }
+                        xmlns="http://www.w3.org/2000/svg"
+                        x="0px"
+                        y="0px"
+                        width="15"
+                        height="15"
+                        viewBox="0 0 24 24"
+                      >
+                        <circle cx="12" cy="12" r="10" opacity=".35"></circle>
+                        <path d="M14.812,16.215L7.785,9.188c-0.384-0.384-0.384-1.008,0-1.392l0.011-0.011c0.384-0.384,1.008-0.384,1.392,0l7.027,7.027	c0.384,0.384,0.384,1.008,0,1.392l-0.011,0.011C15.82,16.599,15.196,16.599,14.812,16.215z"></path>
+                        <path d="M7.785,14.812l7.027-7.027c0.384-0.384,1.008-0.384,1.392,0l0.011,0.011c0.384,0.384,0.384,1.008,0,1.392l-7.027,7.027	c-0.384,0.384-1.008,0.384-1.392,0l-0.011-0.011C7.401,15.82,7.401,15.196,7.785,14.812z"></path>
+                      </svg>
+                    </div>
+                  )}
+                  {searchFilter.type && (
+                    <div className="flex items-center gap-2 bg-pink-300 p-2 rounded w-fit">
+                      <p className="text-xs">{searchFilter.type}</p>
+                      <svg
+                        onClick={() =>
+                          setSearchFilter({ ...searchFilter, type: "" })
+                        }
+                        xmlns="http://www.w3.org/2000/svg"
+                        x="0px"
+                        y="0px"
+                        width="15"
+                        height="15"
+                        viewBox="0 0 24 24"
+                      >
+                        <circle cx="12" cy="12" r="10" opacity=".35"></circle>
+                        <path d="M14.812,16.215L7.785,9.188c-0.384-0.384-0.384-1.008,0-1.392l0.011-0.011c0.384-0.384,1.008-0.384,1.392,0l7.027,7.027	c0.384,0.384,0.384,1.008,0,1.392l-0.011,0.011C15.82,16.599,15.196,16.599,14.812,16.215z"></path>
+                        <path d="M7.785,14.812l7.027-7.027c0.384-0.384,1.008-0.384,1.392,0l0.011,0.011c0.384,0.384,0.384,1.008,0,1.392l-7.027,7.027	c-0.384,0.384-1.008,0.384-1.392,0l-0.011-0.011C7.401,15.82,7.401,15.196,7.785,14.812z"></path>
+                      </svg>
+                    </div>
+                  )}
+                </div>
+              </>
             )}
           <h1 className="text-2xl font-semibold">Filter</h1>
 
@@ -194,30 +196,6 @@ function Jobs() {
         </div>
         <div className="w-full px-4 py-6 overflow-y-auto">
           <div className="w-full grid grid-cols-1 lg:grid-cols-2 gap-6">
-            {/* {[
-              "Frontend developer",
-              "Backend developer",
-              "Web designer",
-              "Fullstack developer",
-              "Javascript developer",
-              "React developer",
-              "Python developer",
-              "UX/UI Designer",
-              "DevOps Engineer",
-            ].map((val, idx) => (
-              <div
-                key={idx}
-                id={`tech-${idx}`}
-                className="border border-gray-300 rounded-md shadow-sm p-4 bg-white flex flex-col items-center justify-center min-h-[120px]"
-              >
-                <h1 className="text-base font-semibold text-gray-700">
-                  Job role: {val}
-                </h1>
-                <p className="text-sm text-gray-500 mt-1">
-                  Lorem ipsum dolor sit.
-                </p>
-              </div>
-            ))} */}
             {jobs.map((job, index) => (
               <div
                 key={index}
@@ -225,14 +203,24 @@ function Jobs() {
                 className="border border-gray-300 rounded-md shadow-sm p-4 bg-white flex flex-col justify-center min-h-[120px]"
               >
                 <h1 className=" text-lg font-semibold text-gray-700">
-                  Job title: {job.title}
+                  {job.title}
                 </h1>
                 <div className="flex gap-1">
-                  <p className="bg-gray-200 p-1 rounded">Location:{job.location}</p>
+                  <p className="bg-gray-200 p-1 rounded">
+                    Location:{job.location}
+                  </p>
                   <p className="bg-gray-200 p-1 rounded">Type:{job.type}</p>
                   <p className="bg-gray-200 p-1 rounded">Salary:{job.salary}</p>
                 </div>
                 <p className="text-sm text-gray-500 mt-1">{job.description}</p>
+                <div className="mt-4">
+                  <button className="bg-blue-500 text-white px-4 py-1 rounded">
+                    Apply
+                  </button>
+                  <button className="bg-gray-300 text-gray-700 px-4 py-1 rounded ml-2">
+                    Save
+                  </button>
+                </div>
               </div>
             ))}
           </div>
