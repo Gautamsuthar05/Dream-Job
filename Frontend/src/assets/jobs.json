@@ -142,5 +142,69 @@
     ],
     "postedDate": "2023-10-05",
     "salary": "$80,000 - $120,000"
+  },
+  {
+    "id": 10,
+    "title": "Content Writer",
+    "company": "WriteWell",
+    "location": "Remote",
+    "type": "Part-time",
+    "category": "Writing",
+    "description": "Create engaging and informative content for various platforms. Proficient in SEO and content marketing strategies. Experience with blogging and social media is a plus. Collaborate with marketing teams to develop content that drives traffic and engagement.",
+    "requirements": [
+      "Bachelor's degree in English, Journalism, or related field",
+      "3+ years of experience in content writing",
+      "Strong writing and editing skills"
+    ],
+    "postedDate": "2023-09-28",
+    "salary": "$30/hr - $50/hr"
+  },
+  {
+    "id": 11,
+    "title": "HR Specialist",
+    "company": "PeopleFirst",
+    "location": "Chicago, IL",
+    "type": "Full-time",
+    "category": "Human Resources",
+    "description": "Manage recruitment and employee relations. Proficient in HR software and best practices. Experience with talent acquisition is a plus. Collaborate with management to develop and implement HR strategies that support business goals.",
+    "requirements": [
+      "Bachelor's degree in Human Resources or related field",
+      "3+ years of experience in HR",
+      "Strong communication and interpersonal skills"
+    ],
+    "postedDate": "2023-10-03",
+    "salary": "$60,000 - $90,000"
+  },
+  {
+    "id": 12,
+    "title": "Sales Manager",
+    "company": "SalesPros",
+    "location": "Miami, FL",
+    "type": "Full-time",
+    "category": "Sales",
+    "description": "Lead sales team and strategies. Proficient in CRM software and sales techniques. Experience with B2B sales is a plus. Collaborate with marketing and product teams to drive revenue growth and customer acquisition.",
+    "requirements": [
+      "Bachelor's degree in Business or related field",
+      "5+ years of experience in sales",
+      "Strong leadership and communication skills"
+    ],
+    "postedDate": "2023-09-22",
+    "salary": "$70,000 - $110,000"
+  },
+  {
+    "id": 13,
+    "title": "Customer Support Specialist",
+    "company": "HelpDesk",
+    "location": "Remote",
+    "type": "Full-time",
+    "category": "Customer Service",
+    "description": "Provide excellent customer support via phone, email, and chat. Proficient in CRM software and customer service best practices. Experience with technical support is a plus. Collaborate with product and engineering teams to resolve customer issues and improve user experience.",
+    "requirements": [
+      "Bachelor's degree in Communications or related field",
+      "2+ years of experience in customer support",
+      "Strong communication and problem-solving skills"
+    ],
+    "postedDate": "2023-10-04",
+    "salary": "$40,000 - $60,000"
   }
 ]

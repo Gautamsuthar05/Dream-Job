@@ -46,7 +46,7 @@ function Navbar() {
       if (data.success) {
         toast.success(data.message);
         setLoggedin(false);
-        setUserData(null);
+        setUserData(false);
         navigate("/login");
       } else {
         toast.error(data.message);
@@ -133,7 +133,7 @@ function Navbar() {
         } lg:block`}
       >
         {loggedin && (
-          <ul className="flex flex-col lg:flex-row gap-3 lg:gap-6 items-start lg:items-center">
+          <ul className="flex flex-col lg:flex-row gap-3 lg:gap-6 items-center lg:items-center">
             <li className="hover:text-yellow-400 cursor-pointer">Home</li>
 
             <li className="relative cursor-pointer" onClick={toggleDropdown}>

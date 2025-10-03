@@ -5,7 +5,8 @@ import Signup from "./pages/SignUp";
 import Applications from "./pages/Applications";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { AppContextProvider } from "./context/AppContext";
-
+import { ToastContainer } from "react-toastify";
+import "react-toastify/ReactToastify.css";
 function App() {
   const router = createBrowserRouter([
     {
@@ -49,6 +50,7 @@ function App() {
   return (
     <>
       <AppContextProvider>
+        <ToastContainer />
         <RouterProvider router={router}>
           <Home />
         </RouterProvider>

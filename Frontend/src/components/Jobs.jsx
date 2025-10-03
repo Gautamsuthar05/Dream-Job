@@ -1,14 +1,28 @@
 import AppContext from "../context/AppContext";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 function Jobs() {
   const { isSearched, searchFilter, setSearchFilter, jobs } =
     useContext(AppContext);
+  const [showFilters, setShowFilters] = useState(true);
+  const [currentPage, setCurrentPage] = useState(1);
+  const jobsPerPage = 6;
+  const totalPages = Math.ceil(jobs.length / jobsPerPage);
 
   return (
     <>
-      <div className="flex w-full pt-[160px] lg:pt-[72px]">
+      <div className="flex w-full pt-[170px] lg:pt-[72px] flex-col md:flex-row ">
+        <button
+          onClick={() => setShowFilters(!showFilters)}
+          className="md:hidden p-2 bg-blue-500 mx-4 my-1 text-white rounded"
+        >
+          {showFilters ? "Hide Filters" : "Show Filters"}
+        </button>
         {/* Left Sidebar */}
-        <div className="w-full hidden md:block max-w-70 p-6 overflow-y-auto bg-gray-100 rounded-lg shadow-md flex flex-col gap-4">
+        <div
+          className={`w-full md:max-w-70 md:block p-6 overflow-y-auto bg-gray-100 rounded-lg shadow-md flex flex-col gap-4 ${
+            showFilters ? "" : "hidden"
+          }`}
+        >
           {isSearched &&
             (searchFilter.title !== "" || searchFilter.type !== "") && (
               <>
@@ -60,7 +74,7 @@ function Jobs() {
           <h1 className="text-2xl font-semibold">Filter</h1>
 
           {/* Job Type */}
-          <div>
+          <div className="hidden md:block">
             <h2 className="text-lg font-medium mb-2">Job Type</h2>
             <form className="flex flex-col gap-1 pl-3">
               {[
@@ -109,7 +123,7 @@ function Jobs() {
           </div>
 
           {/* Experience Level */}
-          <div>
+          <div className="hidden md:block">
             <h2 className="text-lg font-medium mb-2">Experience Level</h2>
             <form className="flex flex-col gap-1 pl-3">
               {[
@@ -132,7 +146,7 @@ function Jobs() {
           </div>
 
           {/* Location */}
-          <div>
+          {/* <div className="hidden md:block">
             <h2 className="text-lg mt-2 font-medium mb-2">Location</h2>
             <form className="flex flex-col gap-1 pl-3">
               {["Remote", "Hybrid", "On-site (India)", "On-site (Global)"].map(
@@ -148,10 +162,10 @@ function Jobs() {
                 )
               )}
             </form>
-          </div>
+          </div> */}
 
           {/* Salary Range */}
-          <div>
+          {/* <div className="hidden md:block">
             <h2 className="text-lg font-medium mb-2">Salary Range</h2>
             <form className="flex flex-col gap-1 pl-3">
               {["₹0-₹20K", "₹20K-₹50K", "₹50K-₹1L", "₹1L+"].map(
@@ -167,10 +181,10 @@ function Jobs() {
                 )
               )}
             </form>
-          </div>
+          </div> */}
 
           {/* Tech Stack */}
-          <div>
+          {/* <div className="hidden md:block">
             <h2 className="text-lg font-medium mb-2">Tech Stack</h2>
             <form className="flex flex-col gap-1 pl-3">
               {[
@@ -192,11 +206,11 @@ function Jobs() {
                 </label>
               ))}
             </form>
-          </div>
+          </div> */}
         </div>
         <div className="w-full px-4 py-6 overflow-y-auto">
           <div className="w-full grid grid-cols-1 lg:grid-cols-2 gap-6">
-            {jobs.map((job, index) => (
+            {jobs.slice((currentPage - 1) * jobsPerPage, currentPage * jobsPerPage).map((job, index) => (
               <div
                 key={index}
                 id={`job-${index}`}
@@ -224,6 +238,39 @@ function Jobs() {
               </div>
             ))}
           </div>
+          {/* Pagination Controls */}
+          {jobs.length === 0 && (
+            <p className="text-center col-span-2">No jobs found.</p>
+          )}
+          {jobs.length > 0 && (
+            <div className="flex justify-center mt-6">
+              <a href="#job-list">
+                <button
+                  className="border border-gray-400 p-2 hover:bg-gray-200 rounded"
+                  onClick={() =>
+                    setCurrentPage((prev) => Math.max(prev - 1, 1))
+                  }
+                >
+                  Prev
+                </button>
+              </a>
+              <a href="#job-list">
+                <button className="mx-2 border border-gray-400 p-2 hover:bg-gray-200 rounded">
+                  Page {currentPage}
+                </button>
+              </a>
+              <a href="#job-list">
+                <button
+                  className="border border-gray-400 p-2 hover:bg-gray-200 rounded"
+                  onClick={() =>
+                    setCurrentPage((prev) => Math.min(prev + 1, totalPages))
+                  }
+                >
+                  Next
+                </button>
+              </a>
+            </div>
+          )}
         </div>
       </div>
     </>
