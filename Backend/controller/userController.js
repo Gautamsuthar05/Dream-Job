@@ -3,7 +3,7 @@ import userModel from "../models/userModel.js";
 const getUserData = async (req, res) => {
   try {
     const userid = req.userid;
-    const user = await userModel.findById(userid);
+    const user = await userModel.findById({ _id: userid });
     if (!user) {
       return res.json({ success: false, message: "User not found" });
     } else {
