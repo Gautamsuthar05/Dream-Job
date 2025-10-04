@@ -1,10 +1,56 @@
 import AppContext from "../context/AppContext";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 function Jobs() {
   const { isSearched, searchFilter, setSearchFilter, jobs } =
     useContext(AppContext);
   const [showFilters, setShowFilters] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
+  const [selectedCategories, setSelectedCategories] = useState([]);
+  const [selectedLocations, setSelectedLocations] = useState([]);
+  const [filteredJobs, setFilteredJobs] = useState(jobs);
+
+  const handleCategoryChange = (category) => {
+    if (selectedCategories.includes(category)) {
+      setSelectedCategories(
+        selectedCategories.filter((cat) => cat !== category)
+      );
+    } else {
+      setSelectedCategories([...selectedCategories, category]);
+    }
+    console.log(selectedCategories);
+  };
+
+  const handleLocationChange = (location) => {
+    if (selectedLocations.includes(location)) {
+      setSelectedLocations(selectedLocations.filter((loc) => loc !== location));
+    } else {
+      setSelectedLocations([...selectedLocations, location]);
+    }
+    console.log(selectedLocations);
+  };
+
+  useEffect(() => {
+    const filtered = jobs.filter((job) => {
+      const matchesCategory =
+        selectedCategories.length === 0 ||
+        selectedCategories.includes(job.category);
+      const matchesLocation =
+        selectedLocations.length === 0 ||
+        selectedLocations.includes(job.location);
+      const matchesTitle =
+        searchFilter.title === "" ||
+        job.title.toLowerCase().includes(searchFilter.title.toLowerCase());
+      const matchesSearchType =
+        searchFilter.type === "" ||
+        job.type.toLowerCase().includes(searchFilter.type.toLowerCase());
+      return (
+        matchesCategory && matchesLocation && matchesTitle && matchesSearchType
+      );
+    });
+    setFilteredJobs(filtered);
+    setCurrentPage(1); // Reset to first page on filter change
+  }, [selectedCategories, selectedLocations, jobs, searchFilter]);
+
   const jobsPerPage = 6;
   const totalPages = Math.ceil(jobs.length / jobsPerPage);
 
@@ -74,7 +120,7 @@ function Jobs() {
           <h1 className="text-2xl font-semibold">Filter</h1>
 
           {/* Job Type */}
-          <div className="hidden md:block">
+          {/* <div className="hidden md:block">
             <h2 className="text-lg font-medium mb-2">Job Type</h2>
             <form className="flex flex-col gap-1 pl-3">
               {[
@@ -91,12 +137,18 @@ function Jobs() {
                   key={index}
                   className="flex gap-2 items-center cursor-pointer"
                 >
-                  <input type="checkbox" name="jobType" id={`type-${index}`} />
+                  <input
+                    type="checkbox"
+                    name="jobType"
+                    onChange={() => handleTypeChange(type)}
+                    checked={selectedType.includes(type)}
+                    id={`type-${index}`}
+                  />
                   {type}
                 </label>
               ))}
             </form>
-          </div>
+          </div> */}
 
           {/* Job Category */}
           <div>
@@ -114,6 +166,8 @@ function Jobs() {
                   <input
                     type="checkbox"
                     name="jobCategory"
+                    onChange={() => handleCategoryChange(category)}
+                    checked={selectedCategories.includes(category)}
                     id={`category-${index}`}
                   />
                   {category}
@@ -123,7 +177,7 @@ function Jobs() {
           </div>
 
           {/* Experience Level */}
-          <div className="hidden md:block">
+          {/* <div className="hidden md:block">
             <h2 className="text-lg font-medium mb-2">Experience Level</h2>
             <form className="flex flex-col gap-1 pl-3">
               {[
@@ -137,32 +191,41 @@ function Jobs() {
                   <input
                     type="checkbox"
                     name="experience"
+                    onChange={() => handleExperienceChange(level)}
+                    checked={selectedExperience.includes(level)}
                     id={`exp-${index}`}
                   />
                   {level}
                 </label>
               ))}
             </form>
-          </div>
+          </div> */}
 
           {/* Location */}
-          {/* <div className="hidden md:block">
+          <div className="hidden md:block">
             <h2 className="text-lg mt-2 font-medium mb-2">Location</h2>
             <form className="flex flex-col gap-1 pl-3">
-              {["Remote", "Hybrid", "On-site (India)", "On-site (Global)"].map(
-                (loc, index) => (
-                  <label key={index} className="flex gap-2 items-center">
-                    <input
-                      type="checkbox"
-                      name="location"
-                      id={`loc-${index}`}
-                    />
-                    {loc}
-                  </label>
-                )
-              )}
+              {[
+                "Remote",
+                "Hybrid",
+                "On-site (India)",
+                "On-site (Global)",
+                "Bangalore",
+                "Hyderabad",
+              ].map((loc, index) => (
+                <label key={index} className="flex gap-2 items-center">
+                  <input
+                    type="checkbox"
+                    name="location"
+                    onChange={() => handleLocationChange(loc)}
+                    checked={selectedLocations.includes(loc)}
+                    id={`loc-${index}`}
+                  />
+                  {loc}
+                </label>
+              ))}
             </form>
-          </div> */}
+          </div>
 
           {/* Salary Range */}
           {/* <div className="hidden md:block">
@@ -210,39 +273,45 @@ function Jobs() {
         </div>
         <div className="w-full px-4 py-6 overflow-y-auto">
           <div className="w-full grid grid-cols-1 lg:grid-cols-2 gap-6">
-            {jobs.slice((currentPage - 1) * jobsPerPage, currentPage * jobsPerPage).map((job, index) => (
-              <div
-                key={index}
-                id={`job-${index}`}
-                className="border border-gray-300 rounded-md shadow-sm p-4 bg-white flex flex-col justify-center min-h-[120px]"
-              >
-                <h1 className=" text-lg font-semibold text-gray-700">
-                  {job.title}
-                </h1>
-                <div className="flex gap-1">
-                  <p className="bg-gray-200 p-1 rounded">
-                    Location:{job.location}
+            {filteredJobs
+              .slice((currentPage - 1) * jobsPerPage, currentPage * jobsPerPage)
+              .map((job, index) => (
+                <div
+                  key={index}
+                  id={`job-${index}`}
+                  className="border border-gray-300 rounded-md shadow-sm p-4 bg-white flex flex-col justify-center min-h-[120px]"
+                >
+                  <h1 className=" text-lg font-semibold text-gray-700">
+                    {job.title}
+                  </h1>
+                  <div className="flex gap-1">
+                    <p className="bg-gray-200 p-1 rounded">
+                      Location:{job.location}
+                    </p>
+                    <p className="bg-gray-200 p-1 rounded">Type:{job.type}</p>
+                    <p className="bg-gray-200 p-1 rounded">
+                      Salary:{job.salary}
+                    </p>
+                  </div>
+                  <p className="text-sm text-gray-500 mt-1">
+                    {job.description}
                   </p>
-                  <p className="bg-gray-200 p-1 rounded">Type:{job.type}</p>
-                  <p className="bg-gray-200 p-1 rounded">Salary:{job.salary}</p>
+                  <div className="mt-4">
+                    <button className="bg-blue-500 text-white px-4 py-1 rounded">
+                      Apply
+                    </button>
+                    <button className="bg-gray-300 text-gray-700 px-4 py-1 rounded ml-2">
+                      Save
+                    </button>
+                  </div>
                 </div>
-                <p className="text-sm text-gray-500 mt-1">{job.description}</p>
-                <div className="mt-4">
-                  <button className="bg-blue-500 text-white px-4 py-1 rounded">
-                    Apply
-                  </button>
-                  <button className="bg-gray-300 text-gray-700 px-4 py-1 rounded ml-2">
-                    Save
-                  </button>
-                </div>
-              </div>
-            ))}
+              ))}
           </div>
           {/* Pagination Controls */}
-          {jobs.length === 0 && (
+          {filteredJobs.length === 0 && (
             <p className="text-center col-span-2">No jobs found.</p>
           )}
-          {jobs.length > 0 && (
+          {filteredJobs.length > 0 && (
             <div className="flex justify-center mt-6">
               <a href="#job-list">
                 <button
