@@ -1,8 +1,8 @@
 import Home from "./pages/Home";
-import Navbar from "./components/Navbar";
 import Login from "./pages/Login";
 import Signup from "./pages/SignUp";
 import Applications from "./pages/Applications";
+import Apply from "./pages/Apply";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { AppContextProvider } from "./context/AppContext";
 import { ToastContainer } from "react-toastify";
@@ -34,6 +34,22 @@ function App() {
       element: (
         <>
           <Applications />
+        </>
+      ),
+    },
+    {
+      path: "/apply/:id",
+      element: (
+        <>
+          <Apply />
+        </>
+      ),
+    },
+    {
+      path: "/jobs/:id",
+      element: (
+        <>
+          
         </>
       ),
     },

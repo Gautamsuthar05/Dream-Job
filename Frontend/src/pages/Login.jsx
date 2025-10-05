@@ -9,8 +9,7 @@ import { useNavigate } from "react-router-dom";
 function LoginPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const { backendURI, getUserData, setLoggedin } =
-    useContext(AppContext);
+  const { backendURI, getUserData, setLoggedin } = useContext(AppContext);
   const navigate = useNavigate();
   axios.defaults.withCredentials = true;
   const handleSubmit = async (e) => {
@@ -20,15 +19,12 @@ function LoginPage() {
         email,
         password,
       });
-      console.log("login");
       data.success
         ? (toast.success(data.message),
           getUserData(),
           setLoggedin(true),
-          navigate("/"),
-          console.log("Navigated to home"))
+          navigate("/"))
         : toast.error(data.message);
-      console.log(data);
     } catch (error) {
       toast.error(error.message);
     }

@@ -16,7 +16,6 @@ function SignupPage() {
 
   const onSubmitHandler = async (e) => {
     e.preventDefault();
-    console.log("Submitting...");
     try {
       const { data } = await axios.post(backendURI + "/api/auth/register", {
         name,

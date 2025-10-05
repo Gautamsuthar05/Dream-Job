@@ -1,5 +1,6 @@
 import AppContext from "../context/AppContext";
 import { useContext, useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 function Jobs() {
   const { isSearched, searchFilter, setSearchFilter, jobs } =
     useContext(AppContext);
@@ -8,6 +9,7 @@ function Jobs() {
   const [selectedCategories, setSelectedCategories] = useState([]);
   const [selectedLocations, setSelectedLocations] = useState([]);
   const [filteredJobs, setFilteredJobs] = useState(jobs);
+  const navigate = useNavigate();
 
   const handleCategoryChange = (category) => {
     if (selectedCategories.includes(category)) {
@@ -17,7 +19,6 @@ function Jobs() {
     } else {
       setSelectedCategories([...selectedCategories, category]);
     }
-    console.log(selectedCategories);
   };
 
   const handleLocationChange = (location) => {
@@ -26,7 +27,6 @@ function Jobs() {
     } else {
       setSelectedLocations([...selectedLocations, location]);
     }
-    console.log(selectedLocations);
   };
 
   useEffect(() => {
@@ -52,7 +52,7 @@ function Jobs() {
   }, [selectedCategories, selectedLocations, jobs, searchFilter]);
 
   const jobsPerPage = 6;
-  const totalPages = Math.ceil(jobs.length / jobsPerPage);
+  const totalPages = Math.ceil(filteredJobs.length / jobsPerPage);
 
   return (
     <>
@@ -297,11 +297,23 @@ function Jobs() {
                     {job.description}
                   </p>
                   <div className="mt-4">
-                    <button className="bg-blue-500 text-white px-4 py-1 rounded">
+                    <button
+                      onClick={() => {
+                        navigate(`/apply/${job.id}`);
+                        scrollTo(0, 0);
+                      }}
+                      className="bg-blue-500 text-white px-4 py-1 rounded"
+                    >
                       Apply
                     </button>
-                    <button className="bg-gray-300 text-gray-700 px-4 py-1 rounded ml-2">
-                      Save
+                    <button
+                      onClick={() => {
+                        navigate(`/jobs/${job.id}`);
+                        scrollTo(0, 0);
+                      }}
+                      className="bg-gray-300 text-gray-700 px-4 py-1 rounded ml-2"
+                    >
+                      Learn More
                     </button>
                   </div>
                 </div>
