@@ -7,6 +7,14 @@
     "type": "Full-time",
     "category": "Software Development",
     "description": "Develop and maintain web applications. Proficient in JavaScript and React. Experience with backend technologies is a plus. Collaborate with cross-functional teams to define, design, and ship new features.",
+    "keyResponsibilities": [
+      "Design, develop, test, and deploy scalable web applications.",
+      "Collaborate with product managers, designers, and backend engineers to deliver features.",
+      "Write clean, maintainable, and efficient code following best practices.",
+      "Participate in code reviews and provide constructive feedback.",
+      "Troubleshoot, debug, and optimize application performance.",
+      "Stay up-to-date with emerging technologies and frameworks."
+    ],
     "requirements": [
       "Bachelor's degree in Computer Science",
       "3+ years of experience with JavaScript",
