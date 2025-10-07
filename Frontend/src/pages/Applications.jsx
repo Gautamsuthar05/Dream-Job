@@ -2,7 +2,6 @@ import { useState } from "react";
 import Navbar from "../components/Navbar";
 import AppliedJobs from "../assets/Applied.json";
 import moment from "moment";
-import { data } from "react-router-dom";
 
 const Applications = () => {
   const [isEdit, setIsEdit] = useState(false);

@@ -8,7 +8,6 @@ import { toast } from "react-toastify";
 import axios from "axios";
 
 function Navbar() {
-  const [DropdownOpen, setDropdownOpen] = useState(false);
   const [logoutButton, setLogoutButton] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false); // ✅ New state for mobile nav
   const {
@@ -19,6 +18,7 @@ function Navbar() {
     setLoggedin,
     backendURI,
     setUserData,
+    setShowRecruiterLogin,
   } = useContext(AppContext);
   const navigate = useNavigate();
   const titleRef = useRef(null);
@@ -46,6 +46,7 @@ function Navbar() {
       if (data.success) {
         toast.success(data.message);
         setLoggedin(false);
+        localStorage.removeItem("userData");
         setUserData(false);
         navigate("/login");
       } else {
@@ -56,7 +57,6 @@ function Navbar() {
     }
   };
 
-  const toggleDropdown = () => setDropdownOpen((prev) => !prev);
   const toggleLogout = () => setLogoutButton((prev) => !prev);
   const toggleMobileMenu = () => setMobileMenuOpen((prev) => !prev); // ✅ Toggle mobile nav
 
@@ -139,23 +139,6 @@ function Navbar() {
                 Home
               </Link>
             </li>
-
-            <li className="relative cursor-pointer" onClick={toggleDropdown}>
-              <span className="hover:text-yellow-400">Jobs ▾</span>
-              {DropdownOpen && (
-                <ul className="absolute bg-white text-black shadow-md rounded mt-2 w-40 z-10">
-                  <li className="px-4 py-2 hover:bg-gray-500 cursor-pointer">
-                    Internships
-                  </li>
-                  <li className="px-4 py-2 hover:bg-gray-500 cursor-pointer">
-                    Fresher Jobs
-                  </li>
-                  <li className="px-4 py-2 hover:bg-gray-500 cursor-pointer">
-                    Remote Roles
-                  </li>
-                </ul>
-              )}
-            </li>
             <li>
               <Link to="/applications" className="hover:text-yellow-400">
                 Applied Jobs
@@ -185,14 +168,21 @@ function Navbar() {
 
         {!loggedin && (
           <div className="flex flex-col lg:flex-row gap-2">
+            <Link to="/rec-login">
+              <button
+                onClick={(e) => {
+                  setShowRecruiterLogin(true);
+                }}
+                className="border py-1 px-3 rounded-lg bg-blue-900 hover:bg-blue-800"
+              >
+                Recruiter Login
+              </button>
+            </Link>
             <Link to="/login">
               <button className="border py-1 px-3 rounded-lg bg-blue-900 hover:bg-blue-800">
                 Login
               </button>
             </Link>
-            {/* <button className="border py-1 px-3 rounded-lg bg-blue-900 hover:bg-blue-800">
-              Login
-            </button> */}
           </div>
         )}
       </div>

@@ -3,11 +3,13 @@ import Login from "./pages/Login";
 import Signup from "./pages/SignUp";
 import Applications from "./pages/Applications";
 import Apply from "./pages/Apply";
+import Recruiter from "./pages/Recruiter";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { AppContextProvider } from "./context/AppContext";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/ReactToastify.css";
 function App() {
+ 
   const router = createBrowserRouter([
     {
       path: "/",
@@ -22,6 +24,14 @@ function App() {
       element: (
         <>
           <Login />
+        </>
+      ),
+    },
+    {
+      path: "/rec-login",
+      element: (
+        <>
+          <Recruiter />
         </>
       ),
     },
@@ -47,11 +57,7 @@ function App() {
     },
     {
       path: "/jobs/:id",
-      element: (
-        <>
-          
-        </>
-      ),
+      element: <></>,
     },
     {
       path: "*",

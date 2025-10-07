@@ -6,6 +6,7 @@ import { toast } from "react-toastify";
 export const AppContextProvider = ({ children }) => {
   const [searchFilter, setSearchFilter] = useState({ title: "", type: "" });
   const [jobs, setJobs] = useState([]);
+  const [showRecruiterLogin, setShowRecruiterLogin] = useState(false);
   const [userData, setUserData] = useState(() => {
     const savedUser = localStorage.getItem("userData");
     return savedUser ? JSON.parse(savedUser) : false;
@@ -52,6 +53,8 @@ export const AppContextProvider = ({ children }) => {
     setUserData,
     loggedin,
     setLoggedin,
+    showRecruiterLogin,
+    setShowRecruiterLogin,
   };
 
   return <AppContext.Provider value={value}>{children}</AppContext.Provider>;
