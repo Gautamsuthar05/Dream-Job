@@ -92,7 +92,7 @@ function Navbar() {
         onSubmit={handleSubmit}
         className="w-full lg:flex lg:items-center lg:w-auto mt-3 lg:mt-0"
       >
-        <div className="flex px-4 py-2 border rounded-full flex-col lg:flex-row w-full gap-2 lg:gap-0">
+        <div className="flex px-4 py-2 border rounded-full lg:flex-row w-full gap-2 lg:gap-0">
           <select
             className="rounded px-3 py-1 focus:outline-none hidden lg:block"
             ref={typeRef}
@@ -119,7 +119,7 @@ function Navbar() {
           <button
             onClick={onSearch}
             type="submit"
-            className="border rounded-full bg-blue-900 hover:bg-blue-800 py-1 px-3 "
+            className="border w-20 rounded-full bg-blue-900 hover:bg-blue-800 py-1 px-3 "
           >
             Search
           </button>
@@ -134,7 +134,11 @@ function Navbar() {
       >
         {loggedin && (
           <ul className="flex flex-col lg:flex-row gap-3 lg:gap-6 items-center lg:items-center">
-            <li className="hover:text-yellow-400 cursor-pointer">Home</li>
+            <li className="hover:text-yellow-400 cursor-pointer">
+              <Link to="/" className="hover:text-yellow-400">
+                Home
+              </Link>
+            </li>
 
             <li className="relative cursor-pointer" onClick={toggleDropdown}>
               <span className="hover:text-yellow-400">Jobs ▾</span>

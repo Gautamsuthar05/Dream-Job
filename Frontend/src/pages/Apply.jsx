@@ -84,47 +84,49 @@ const Apply = () => {
         </div>
       </div>
 
-      {/* ✅ Job Description */}
-      <div className="mx-4 sm:mx-8 md:mx-16 lg:mx-20 my-10 flex flex-col">
-        <h2 className="text-xl font-semibold pb-3 text-gray-800">
-          Job Description:
-        </h2>
-        <p className="text-gray-700 leading-relaxed text-justify">
-          {jobData.description}
-        </p>
-      </div>
-
-      {/* ✅ Requirements */}
-      <div className="mx-4 sm:mx-8 md:mx-16 lg:mx-20 my-10 flex flex-col">
-        <h2 className="text-xl font-semibold pb-3 text-gray-800">
-          Requirements:
-        </h2>
-        <ul className="list-disc ml-6 text-gray-700 space-y-2">
-          {jobData.requirements.map((req, index) => (
-            <li key={index}>{req}</li>
-          ))}
-        </ul>
-      </div>
-
-      {/* ✅ Key Responsibilities */}
-      {jobData.keyResponsibilities && (
+      <div className="w-full">
+        {/* ✅ Job Description */}
         <div className="mx-4 sm:mx-8 md:mx-16 lg:mx-20 my-10 flex flex-col">
           <h2 className="text-xl font-semibold pb-3 text-gray-800">
-            Key Responsibilities:
+            Job Description:
+          </h2>
+          <p className="text-gray-700 leading-relaxed text-justify">
+            {jobData.description}
+          </p>
+        </div>
+
+        {/* ✅ Requirements */}
+        <div className="mx-4 sm:mx-8 md:mx-16 lg:mx-20 my-10 flex flex-col">
+          <h2 className="text-xl font-semibold pb-3 text-gray-800">
+            Requirements:
           </h2>
           <ul className="list-disc ml-6 text-gray-700 space-y-2">
-            {jobData.keyResponsibilities.map((res, index) => (
-              <li key={index}>{res}</li>
+            {jobData.requirements.map((req, index) => (
+              <li key={index}>{req}</li>
             ))}
           </ul>
         </div>
-      )}
 
-      {/* ✅ Bottom Apply Button */}
-      <div className="mx-4 sm:mx-8 md:mx-16 lg:mx-20 my-10 flex justify-center">
-        <button className="border border-blue-600 px-8 py-3 rounded-lg bg-blue-500 text-white hover:bg-blue-600 transition-all w-full sm:w-auto">
-          Apply Now
-        </button>
+        {/* ✅ Key Responsibilities */}
+        {jobData.keyResponsibilities && (
+          <div className="mx-4 sm:mx-8 md:mx-16 lg:mx-20 my-10 flex flex-col">
+            <h2 className="text-xl font-semibold pb-3 text-gray-800">
+              Key Responsibilities:
+            </h2>
+            <ul className="list-disc ml-6 text-gray-700 space-y-2">
+              {jobData.keyResponsibilities.map((res, index) => (
+                <li key={index}>{res}</li>
+              ))}
+            </ul>
+          </div>
+        )}
+
+        {/* ✅ Bottom Apply Button */}
+        <div className="mx-4 sm:mx-8 md:mx-16 lg:mx-20 my-10 flex justify-center">
+          <button className="border border-blue-600 px-8 py-3 rounded-lg bg-blue-500 text-white hover:bg-blue-600 transition-all w-full sm:w-auto">
+            Apply Now
+          </button>
+        </div>
       </div>
     </>
   );
