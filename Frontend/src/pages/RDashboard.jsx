@@ -66,32 +66,47 @@ function RDashboard() {
             <NavLink
               to={"add-jobs"}
               className={({ isActive }) =>
-                `hover:bg-blue-100 w-full ${
-                  isActive && "bg-blue-100 border-r-4 border-blue-500"
+                `hover:bg-blue-100 flex items-center justify-start p-1 w-full ${
+                  isActive && "bg-blue-100 p-3 border-r-4 border-blue-500"
                 }`
               }
             >
-              <p>Add Job</p>
+              <img
+                src="https://img.icons8.com/?size=100&id=Xb6BIWuGB9xH&format=png&color=000000"
+                alt=""
+                className=" min-w-4 w-8"
+              />
+              <p className=" max-sm:hidden">Add Job</p>
             </NavLink>
             <NavLink
               to={"manage-jobs"}
               className={({ isActive }) =>
-                `hover:bg-blue-100 w-full${
-                  isActive && "bg-blue-100 border-r-4 border-blue-500"
+                `hover:bg-blue-100 flex items-center justify-start p-1 w-full${
+                  isActive && "bg-blue-100 p-3 border-r-4 border-blue-500"
                 }`
               }
             >
-              <p>Manage Job</p>
+              <img
+                src="https://img.icons8.com/?size=100&id=104081&format=png&color=000000"
+                alt=""
+                className=" min-w-4 w-8"
+              />
+              <p className=" max-sm:hidden">Manage Job</p>
             </NavLink>
             <NavLink
               to={"view-applications"}
               className={({ isActive }) =>
-                `hover:bg-blue-100 w-full ${
-                  isActive && "bg-blue-100 border-r-4 border-blue-500"
+                `hover:bg-blue-100 flex items-center justify-start p-1 w-full ${
+                  isActive && "bg-blue-100 p-3 border-r-4 border-blue-500"
                 }`
               }
             >
-              <p>View Job</p>
+              <img
+                src="https://img.icons8.com/?size=100&id=13758&format=png&color=000000"
+                alt=""
+                className=" min-w-4 w-8"
+              />
+              <p className=" max-sm:hidden">View Job</p>
             </NavLink>
           </ul>
         </div>
