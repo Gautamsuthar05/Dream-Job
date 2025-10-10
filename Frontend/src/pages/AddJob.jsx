@@ -9,7 +9,7 @@ const AddJob = () => {
   const [salary, setSalary] = useState("0");
 
   return (
-    <div className="p-8">
+    <div className="p-4">
       <form className="flex flex-col gap-3">
         <label htmlFor="title" className="flex flex-col gap-1">
           <p className="">Job Title</p>
@@ -28,14 +28,13 @@ const AddJob = () => {
           <textarea
             name=""
             rows="3"
-            cols={"40"}
             id="title"
             placeholder="Enter Your Description"
             className="border rounded-lg px-3 py-1"
           ></textarea>
         </label>
-        <div className="flex gap-3">
-          <label htmlFor="category" className="flex flex-col gap-1 w-fit">
+        <div className="flex flex-col sm:flex-row gap-3">
+          <label htmlFor="category" className="flex flex-col gap-1">
             <p>Job category</p>
             <select
               name="category"

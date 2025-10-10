@@ -7,7 +7,7 @@ function RDashboard() {
 
   return (
     <>
-      <header className="fixed top-0 left-0 z-50 w-full bg-gray-800 text-white">
+      <header className="fixed top-0 left-0 z-50 min-w-screen bg-gray-800 text-white">
         <nav className="px-4 py-3 flex justify-between items-center">
           {/* Logo and Brand */}
           <div

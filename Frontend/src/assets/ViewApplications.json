@@ -1,0 +1,38 @@
+[
+  {
+    "id": 1,
+    "Job-title": "Software Engineer",
+    "user name": "Gautam",
+    "Location": "Bangalore"
+  },
+  {
+    "id": 2,
+    "Job-title": "Marketing Manager",
+    "user name": "Gautam",
+    "Location": "Hyderabad"
+  },
+  {
+    "id": 3,
+    "Job-title": "Data Analyst",
+    "user name": "Gautam",
+    "Location": "Mumbai"
+  },
+  {
+    "id": 4,
+    "Job-title": "UI/UX Designer",
+    "user name": "Gautam",
+    "Location": "Delhi"
+  },
+  {
+    "id": 5,
+    "Job-title": "Product Manager",
+    "user name": "Gautam",
+    "Location": "Chennai"
+  },
+  {
+    "id": 6,
+    "Job-title": "DevOps Engineer",
+    "user name": "Gautam",
+    "Location": "Remote"
+  }
+]
