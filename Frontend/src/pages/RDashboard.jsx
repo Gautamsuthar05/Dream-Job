@@ -76,7 +76,7 @@ function RDashboard() {
                 alt=""
                 className=" min-w-4 w-8"
               />
-              <p className=" max-sm:hidden">Add Job</p>
+              <p className=" max-md:hidden">Add Job</p>
             </NavLink>
             <NavLink
               to={"manage-jobs"}
@@ -91,7 +91,7 @@ function RDashboard() {
                 alt=""
                 className=" min-w-4 w-8"
               />
-              <p className=" max-sm:hidden">Manage Job</p>
+              <p className=" max-md:hidden">Manage Job</p>
             </NavLink>
             <NavLink
               to={"view-applications"}
@@ -106,7 +106,7 @@ function RDashboard() {
                 alt=""
                 className=" min-w-4 w-8"
               />
-              <p className=" max-sm:hidden">View Job</p>
+              <p className=" max-md:hidden">View Job</p>
             </NavLink>
           </ul>
         </div>

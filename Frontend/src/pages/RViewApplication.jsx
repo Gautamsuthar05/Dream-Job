@@ -3,13 +3,13 @@ import viewApplications from "../assets/ViewApplications.json";
 const RViewApplication = () => {
   return (
     <>
-      <div className=" p-8 mx-auto">
-        <div>
+      <div className=" max-sm:p-2 p-8 mx-auto">
+        <div className=" overflow-x-auto">
           <table className=" bg-white border border-gray-200 w-full max-w-2xl max-sm:text-sm">
             <thead>
               <tr className=" border-b">
                 <th className="py-2 px-4 text-left">#</th>
-                <th className="py-2 px-4 text-left">User name</th>
+                <th className="py-2 px-4 text-left">User</th>
                 <th className="py-2 px-4 text-left max-sm:hidden">Job Title</th>
                 <th className="py-2 px-4 text-left max-sm:hidden">Location</th>
                 <th className="py-2 px-4 text-left">Resume</th>

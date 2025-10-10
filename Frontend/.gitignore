@@ -16,6 +16,7 @@ dist-ssr
 *.lock
 package-lock.json
 Applied.json
+manageJobs.json
 
 # Editor directories and files
 .vscode/*
