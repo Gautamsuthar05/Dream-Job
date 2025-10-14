@@ -26,9 +26,13 @@ export const Register = async (req, res) => {
       password: hassedPassword,
     });
 
-    const token = jwt.sign({ id: user._id }, process.env.SECRET_KEY, {
-      expiresIn: "7d",
-    });
+    const token = jwt.sign(
+      { id: user._id, role: user.role },
+      process.env.SECRET_KEY,
+      {
+        expiresIn: "7d",
+      }
+    );
 
     res.cookie("token", token, {
       httpOnly: true,
@@ -89,43 +93,4 @@ export const Logout = async (req, res) => {
   } catch (error) {
     return res.json({ success: false, message: error.message });
   }
-};
-
-const registerRecruiter = async (req, res) => {
-  const { name, email, password } = req.body;
-
-  // Check if recruiter already exists
-  const existingUser = await userModel.findOne({ email });
-  if (existingUser)
-    return res.status(400).json({ message: "Recruiter already exists" });
-
-  const hashedPassword = await bcrypt.hash(password, 10);
-
-  const recruiter = new User({
-    name,
-    email,
-    password: hashedPassword,
-    role: "recruiter",
-  });
-
-  await recruiter.save();
-  res.status(201).json({ message: "Recruiter registered successfully" });
-};
-
-const login = async (req, res) => {
-  const { email, password } = req.body;
-  const user = await userModel.findOne({ email });
-
-  if (!user) return res.status(404).json({ message: "User not found" });
-
-  const isMatch = await bcrypt.compare(password, user.password);
-  if (!isMatch) return res.status(401).json({ message: "Invalid credentials" });
-
-  const token = jwt.sign(
-    { id: user._id, role: user.role },
-    process.env.JWT_SECRET,
-    { expiresIn: "1d" }
-  );
-
-  res.status(200).json({ token, role: user.role });
 };

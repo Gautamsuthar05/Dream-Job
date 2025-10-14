@@ -5,6 +5,7 @@ import "dotenv/config";
 import { connectDB } from "./config/db.js";
 import userRouter from "./routes/userRoutes.js";
 import authRouter from "./routes/authRoutes.js";
+import companyRouter from "./routes/companyRoutes.js";
 
 const app = express();
 const port = process.env.PORT || 8000;
@@ -18,6 +19,7 @@ app.use(cors({ origin: allowedOrigin, credentials: true }));
 
 app.use("/api/user", userRouter);
 app.use("/api/auth", authRouter);
+app.use("/recruiter", companyRouter);
 
 app.get("/", (req, res) => {
   res.send("HELLO");

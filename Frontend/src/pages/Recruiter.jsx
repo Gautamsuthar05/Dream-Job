@@ -1,5 +1,8 @@
 /* eslint-disable no-unused-vars */
 import { useState } from "react";
+import axios from "axios";
+import AppContext from "../context/AppContext";
+import { useContext } from "react";
 
 const Recruiter = () => {
   const [state, setState] = useState("Sign-up");
@@ -8,11 +11,38 @@ const Recruiter = () => {
   const [email, setEmail] = useState("");
   const [image, setImage] = useState(false);
   const [istxtDataSubmt, setistxtDataSubmt] = useState(false);
+  const { backendURI } = useContext(AppContext);
 
   const onSubmitHandler = async (e) => {
     e.preventDefault();
-    if (state !== "Login" && !istxtDataSubmt) {
+
+    // Phase 1: Show image upload
+    if (state === "Sign-up" && !istxtDataSubmt) {
       setistxtDataSubmt(true);
+      return;
+    }
+
+    try {
+      if (state === "Sign-up" && istxtDataSubmt) {
+        const res = await axios.post(backendURI + "/recruiter/register", {
+          name,
+          email,
+          password,
+          role: "recruiter",
+        });
+        console.log("Recruiter registered:", res.data);
+      }
+
+      if (state === "Login") {
+        const res = await axios.post(backendURI + "/recruiter/login", {
+          email,
+          password,
+        });
+        console.log("Recruiter logged in:", res.data);
+      }
+    } catch (err) {
+      console.error("Error:", err.response?.data?.message || err.message);
+      alert(err.response?.data?.message || "Something went wrong");
     }
   };
 
@@ -135,7 +165,7 @@ const Recruiter = () => {
                 </a>
               )}
             </div>
-            <button 
+            <button
               type="submit"
               className="w-full bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 transition"
             >
