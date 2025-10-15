@@ -1,9 +1,10 @@
+import userModel from "../models/userModel.js";
+import bcrypt from "bcryptjs"
 export const registerRecruiter = async (req, res) => {
   const { name, email, password } = req.body;
 
   if (!name || !email || !password) {
-    alert("Please fill all fields");
-    return;
+    return res.status(400).json({ message: "Please fill all fields" });
   }
 
   // Check if recruiter already exists
@@ -52,4 +53,10 @@ export const postJob = async (req, res) => {};
 export const getCompanyJobApplicants = async (req, res) => {};
 
 // Get company PostedJob
-export const getCompanyJobPostedJobs = async (req, res) => {};
+export const getCompanyPostedJobs = async (req, res) => {};
+
+// change job application status
+export const changeJobApplicationStatus = async (req, res) => {};
+
+//change job visibility
+export const changeJobVisibility = async (req, res) => {};

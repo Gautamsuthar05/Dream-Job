@@ -24,7 +24,7 @@ const Recruiter = () => {
 
     try {
       if (state === "Sign-up" && istxtDataSubmt) {
-        const res = await axios.post(backendURI + "/recruiter/register", {
+        const res = await axios.post(backendURI + "/api/company/register", {
           name,
           email,
           password,
@@ -34,7 +34,7 @@ const Recruiter = () => {
       }
 
       if (state === "Login") {
-        const res = await axios.post(backendURI + "/recruiter/login", {
+        const res = await axios.post(backendURI + "/api/company/login", {
           email,
           password,
         });

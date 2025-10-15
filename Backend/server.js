@@ -19,7 +19,7 @@ app.use(cors({ origin: allowedOrigin, credentials: true }));
 
 app.use("/api/user", userRouter);
 app.use("/api/auth", authRouter);
-app.use("/recruiter", companyRouter);
+app.use("/api/company", companyRouter);
 
 app.get("/", (req, res) => {
   res.send("HELLO");
